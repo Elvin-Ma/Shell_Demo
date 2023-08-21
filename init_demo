@@ -1,0 +1,18 @@
+#!/bin/bash
+tmux new -d -s mtn -n br_torch
+#tmux rename-window br_torch
+
+tmux detach
+
+#tmux send-keys -t  mtn "Ctrl-b :" C-m
+#tmux send-keys -t mtn "rename-window br_torch" C-m
+
+tmux send-keys -t mtn "docker start mtn_torch_env" C-m
+tmux send-keys -t mtn "docker exec -it mtn_torch_env bash" C-m
+
+echo "Successfully build br_torch container env."
+
+tmux set-window-option -g mode-keys vi
+tmux a -t mtn
+
+echo "Successfully step into pytorch_container."
